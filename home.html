@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Alsploit Solara</title>
+    <!-- Google Fonts (Optional for Enhanced Typography) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and Basic Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            background-color: #000;
+            color: #fff;
+            width: 100%;
+            height: 100%;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+
+        /* Central Container */
+        .container {
+            position: relative;
+            z-index: 1;
+            width: 90%;
+            max-width: 600px;
+            margin: 0 auto;
+            top: 50%;
+            transform: translateY(-50%);
+            text-align: center;
+            padding: 40px;
+            background: rgba(20, 20, 30, 0.85);
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(243, 156, 18, 0.5);
+            animation: softGlow 4s infinite alternate;
+        }
+
+        /* Soft Glow Animation */
+        @keyframes softGlow {
+            from {
+                box-shadow: 0 0 15px rgba(243, 156, 18, 0.5),
+                            0 0 25px rgba(243, 156, 18, 0.3),
+                            0 0 35px rgba(243, 156, 18, 0.2);
+            }
+            to {
+                box-shadow: 0 0 25px rgba(243, 156, 18, 0.7),
+                            0 0 35px rgba(243, 156, 18, 0.5),
+                            0 0 45px rgba(243, 156, 18, 0.3);
+            }
+        }
+
+        /* Heading Styles */
+        .container h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            color: #fff;
+            text-shadow: 0 0 10px #f39c12, 0 0 20px #ff8c00;
+        }
+
+        /* Description Styles */
+        .container p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            color: #ddd;
+        }
+
+        /* Price Styles */
+        .price {
+            font-size: 2em;
+            color: #f39c12;
+            margin-bottom: 30px;
+            animation: priceSoftGlow 3s infinite alternate;
+        }
+
+        @keyframes priceSoftGlow {
+            from {
+                text-shadow: 0 0 10px #f39c12, 0 0 20px #f39c12, 0 0 30px #ff8c00;
+            }
+            to {
+                text-shadow: 0 0 20px #f39c12, 0 0 30px #ff8c00, 0 0 40px #ff8c00;
+            }
+        }
+
+        /* Buy Button Styles */
+        .buy-now-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #f39c12;
+            color: #000;
+            font-size: 1.2em;
+            text-decoration: none;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
+        }
+
+        .buy-now-btn:hover {
+            background-color: #e67e22;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            transform: translateY(-3px);
+        }
+
+        /* Footer Note Styles */
+        .footer-note {
+            position: fixed;
+            bottom: 1px;
+            right: 1px;
+            font-size: 0.1em;
+            color: #ccc;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            .container h1 {
+                font-size: 2.5em;
+            }
+
+            .price {
+                font-size: 1.8em;
+            }
+
+            .buy-now-btn {
+                padding: 12px 25px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Shooting Stars Background -->
+    <canvas id="bgCanvas"></canvas>
+
+    <!-- Product Container -->
+    <div class="container">
+        <h1>Alsploit Solara</h1>
+        <p>The ultimate exploit tool for Arsenal.</p>
+        <div class="price">$9.99 Lifetime</div>
+        <a href="#" class="buy-now-btn">Buy Now</a>
+    </div>
+
+    <!-- -->
+    <div class="footer-note">(this is a joke)</div>
+
+    <!-- Shooting Stars JavaScript -->
+    <script>
+        // Polyfill for requestAnimationFrame
+        (function() {
+            var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || 
+                window.webkitRequestAnimationFrame || window.msRequestAnimationFrame || function(callback) {
+                    window.setTimeout(callback, 1000 / 60);
+                };
+            window.requestAnimationFrame = requestAnimationFrame;
+        })();
+
+        // Initialize Canvas
+        var background = document.getElementById("bgCanvas"),
+            bgCtx = background.getContext("2d"),
+            width = window.innerWidth,
+            height = window.innerHeight;
+
+        background.width = width;
+        background.height = height;
+
+        // Star Class
+        function Star(options){
+            this.size = Math.random() * 2;
+            this.speed = Math.random() * 0.1;
+            this.x = options.x;
+            this.y = options.y;
+        }
+
+        Star.prototype.reset = function(){
+            this.size = Math.random() * 2;
+            this.speed = Math.random() * 0.1;
+            this.x = width;
+            this.y = Math.random() * height;
+        }
+
+        Star.prototype.update = function(){
+            this.x -= this.speed;
+            if(this.x < 0){
+                this.reset();
+            } else {
+                bgCtx.fillStyle = '#ffffff';
+                bgCtx.fillRect(this.x, this.y, this.size, this.size);
+            }
+        }
+
+        // ShootingStar Class
+        function ShootingStar(){
+            this.reset();
+        }
+
+        ShootingStar.prototype.reset = function(){
+            this.x = Math.random() * width;
+            this.y = 0;
+            this.len = (Math.random() * 80) + 10;
+            this.speed = (Math.random() * 10) + 6;
+            this.size = (Math.random() * 1) + 0.1;
+            this.waitTime = new Date().getTime() + (Math.random() * 3000) + 500;
+            this.active = false;
+        }
+
+        ShootingStar.prototype.update = function(){
+            if(this.active){
+                this.x -= this.speed;
+                this.y += this.speed;
+                if(this.x < 0 || this.y >= height){
+                    this.reset();
+                } else {
+                    bgCtx.strokeStyle = '#ffffff';
+                    bgCtx.lineWidth = this.size;
+                    bgCtx.beginPath();
+                    bgCtx.moveTo(this.x, this.y);
+                    bgCtx.lineTo(this.x + this.len, this.y - this.len);
+                    bgCtx.stroke();
+                }
+            } else {
+                if(this.waitTime < new Date().getTime()){
+                    this.active = true;
+                }
+            }
+        }
+
+        var entities = [];
+
+        // Initialize Stars
+        var starCount = 100; // Adjust for performance
+        for(var i = 0; i < starCount; i++){
+            entities.push(new Star({x: Math.random() * width, y: Math.random() * height}));
+        }
+
+        // Add Shooting Stars
+        var shootingStarCount = 2;
+        for(var i = 0; i < shootingStarCount; i++){
+            entities.push(new ShootingStar());
+        }
+
+        // Animation Loop
+        function animate(){
+            // Clear and redraw background
+            bgCtx.fillStyle = '#000011'; // Deep night color
+            bgCtx.fillRect(0, 0, width, height);
+
+            // Update and draw each entity
+            var entLen = entities.length;
+            while(entLen--){
+                entities[entLen].update();
+            }
+
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // Handle Window Resize
+        window.addEventListener('resize', function(){
+            width = window.innerWidth;
+            height = window.innerHeight;
+            background.width = width;
+            background.height = height;
+            // Reset all stars to prevent overflow
+            for(var i = 0; i < entities.length; i++){
+                if(entities[i] instanceof Star){
+                    entities[i].reset();
+                } else if(entities[i] instanceof ShootingStar){
+                    entities[i].reset();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
